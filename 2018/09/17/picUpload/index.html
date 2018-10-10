@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="yalingc" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        长传图片的3种方法以及一些坑｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/2018/09/17/picUpload/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/cyl/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/cyl/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/cyl/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/cyl/">
+                <span class="brand-logo">
+                    yalingc
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/cyl/">Home</a>
+                    </li>
+					
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://118.190.203.145:1995/cyl/banner/banner.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>长传图片的3种方法以及一些坑</h1>
+                    
+                    <span class="meta">
+                         作者 yalingc
+                        <span>
+                          日期 2018-09-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/cyl/tags/#javascript"
+                           title="javascript">javascript</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            长传图片的3种方法以及一些坑
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>这里说一下我遇见的关于本地上传图片，提交图片数据的问题，以下是3种方法，以及我在写代码的过程中遇到的一些坑</p>
+<h3 id="1-原生XMLHttpRequest-formData"><a href="#1-原生XMLHttpRequest-formData" class="headerlink" title="1.原生XMLHttpRequest+formData"></a>1.原生XMLHttpRequest+formData</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">var formData = new FormData();</span><br><span class="line">formData.append(<span class="string">'picType'</span>, 4);</span><br><span class="line">formData.append(<span class="string">'file'</span>, this.files[0]);</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == 4) &#123;</span><br><span class="line">        var status = xhr.status;</span><br><span class="line">        <span class="keyword">if</span> (status &gt;= 200 &amp;&amp; status &lt; 300) &#123;</span><br><span class="line">            var res = JSON.parse(xhr.responseText);</span><br><span class="line">            <span class="keyword">if</span>(res.code == 0) &#123;</span><br><span class="line">                $(<span class="string">'.re-avatar img'</span>).attr(<span class="string">'src'</span>, location.origin + res.data.url);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'http://118.190.203.145:9090/wy/wap/user/upload'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">"token"</span>, util.getCookie(<span class="string">"_wyuu"</span>));</span><br><span class="line">xhr.send(formData);</span><br></pre></td></tr></table></figure>
+<p>我这里在提交数据需要传token，跟用户有绑定，如果需求是在每个请求上都带上一个参数，就可以放在header里面，这样不用在每个请求上都重复获取设置参数。</p>
+<h3 id="2-form表单-ajaxSubmit"><a href="#2-form表单-ajaxSubmit" class="headerlink" title="2.form表单+ajaxSubmit"></a>2.form表单+ajaxSubmit</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form class=<span class="string">"avatar-load"</span> action=<span class="string">"http://118.190.203.145:9090/wy/wap/user/upload"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"localPic"</span> name=<span class="string">"file"</span> /&gt;</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"picType"</span> value=<span class="string">"4"</span> style=<span class="string">"display: none"</span> /&gt;</span><br><span class="line">    &lt;span class=<span class="string">"input-shade"</span>&gt;本地照片&lt;/span&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>我这里的需求是只要input[type=file]的有变化(change事件),就要提交数据，不需要手动点击提交按钮，那就需要自动触发submit事件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input#localPic'</span>).on(<span class="string">'change'</span>, <span class="keyword">function</span>(e) &#123;</span><br><span class="line">	$(<span class="string">'.avatar-load'</span>).submit();</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">'.avatar-load'</span>).on(<span class="string">'submit'</span>, <span class="keyword">function</span>(e) &#123;</span><br><span class="line">    // 禁止form表单提交页面跳转</span><br><span class="line">    e.stopPropagation();</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    $(this).ajaxSubmit(&#123;</span><br><span class="line">        beforeSend: <span class="keyword">function</span>(request) &#123;</span><br><span class="line">            request.setRequestHeader(<span class="string">"token"</span>, util.getCookie(<span class="string">"_wyuu"</span>));</span><br><span class="line">        &#125;,</span><br><span class="line">        beforeSubmit: <span class="keyword">function</span>(data) &#123;</span><br><span class="line">        	//data为上传的图片等数据，在提交前进行数据处理</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="keyword">function</span>(data) &#123;</span><br><span class="line">            <span class="keyword">if</span>(data.code == 0) &#123;</span><br><span class="line">                $(<span class="string">'.re-avatar img'</span>).attr(<span class="string">'src'</span>, location.origin + data.data.url);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                alert(<span class="string">'图片上传失败'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-ajax-formData"><a href="#3-ajax-formData" class="headerlink" title="3.ajax+formData"></a>3.ajax+formData</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var formData = new FormData();</span><br><span class="line">formData.append(<span class="string">'picType'</span>, 4);</span><br><span class="line">formData.append(<span class="string">'file'</span>, this.files[0]);</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:wywap.host+<span class="string">"/wy/wap/user/upload"</span>,</span><br><span class="line">    contentType: <span class="literal">false</span>,</span><br><span class="line">    processData: <span class="literal">false</span>,</span><br><span class="line">    dataType: <span class="string">'json'</span>,</span><br><span class="line">    data: formData,</span><br><span class="line">    cb:<span class="keyword">function</span>(json)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里特别需要注意的是contentType和processData这两个配置项，processData默认值为true，设置为false是让ajax不要预处理数据，按formData的格式提交，contentType也会有一个默认值，设置为false可以让ajax自动识别数据类型，一般应该是类似这种multipart/form-data; boundary=—-WebKitFormBoundaryqnhwJ4Drrn4Qo0Zl，另外，我这里query的版本是3.1.1，可能不同版本会有不同的处理方式。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/cyl/2018/09/17/hello-world/" data-toggle="tooltip" data-placement="top"
+                           title="Hello World">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-原生XMLHttpRequest-formData"><span class="toc-text">1.原生XMLHttpRequest+formData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-form表单-ajaxSubmit"><span class="toc-text">2.form表单+ajaxSubmit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ajax-formData"><span class="toc-text">3.ajax+formData</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; yalingc 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/cyl/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/cyl/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/cyl/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://hisb.github.io/cyl/cyl/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://118.190.203.145:1995/cyl/avatar.png">
+</body>
+
+</html>
