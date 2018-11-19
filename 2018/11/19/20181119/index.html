@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        
+        关于js容易被忽略的知识点｜undefined
         
     </title>
 
-    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/archives/">
+    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/2018/11/19/20181119/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/cyl/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,160 +116,117 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="http://118.190.203.145:1995/cyl/avatar.png"/>
-                        <h5><a href="/cyl/about/">yalingc</a></h5>
-                        <p>我可能是脑残剧看多了</p>
+
+<img class="wechat-title-img" src="http://118.190.203.145:1995/cyl/banner/banner.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>关于js容易被忽略的知识点</h1>
+                    
+                    <span class="meta">
+                         作者 yalingc
+                        <span>
+                          日期 2018-11-19
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/11/19/20181119/">
-        <h2 class="post-title">
+    <div class="post-title-haojen">
+        <span>
             关于js容易被忽略的知识点
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-19
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                经常碰到一种情况，自己觉得代码逻辑没有任何问题，但就是会报错，就是达不到自己预想的结果，其实当你知道一些js的代码进程原理，就很容易的解释问题在哪儿了。
-关于event loop咱们用的js是单线程的，分为异步和同步两种情况，同步事件在主线程上按顺序执行，异步事件会被放入任务队列，当主线程任务执..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/09/17/pic-upload/">
-        <h2 class="post-title">
-            上传图片的3种方法以及一些坑
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                这里说一下我遇见的关于本地上传图片，提交图片数据的问题，以下是3种方法，以及我在写代码的过程中遇到的一些坑
-1.原生XMLHttpRequest+formData1234567891011121314151617181920var xhr = new XMLHttpRequest();var f..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/09/17/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="http://118.190.203.145:1995/cyl/avatar.png"/>
-                    
-                    <h5><a href="/cyl/about/">yalingc</a></h5>
-                    
-                    <p>我可能是脑残剧看多了</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-
-            
-
-        </div>
+        </span>
     </div>
-</div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>经常碰到一种情况，自己觉得代码逻辑没有任何问题，但就是会报错，就是达不到自己预想的结果，其实当你知道一些js的代码进程原理，就很容易的解释问题在哪儿了。</p>
+<h3 id="关于event-loop"><a href="#关于event-loop" class="headerlink" title="关于event loop"></a>关于event loop</h3><p>咱们用的js是单线程的，分为异步和同步两种情况，同步事件在主线程上按顺序执行，异步事件会被放入任务队列，当主线程任务执行完成之后，才会按照先进先出的原则去循环执行任务队列中事件对应的回调函数，所以我才知道原来setTimeout定时器可能并不会在指定的时间去执行回调，需要等到主线程任务执行完成之后才会去处理异步的回调。这也是为什么ajax发出的send异步请求和指定的onload，onerror回调函数的位置可以互换。</p>
+<h3 id="关于改变this指向的事件的绑定和移除"><a href="#关于改变this指向的事件的绑定和移除" class="headerlink" title="关于改变this指向的事件的绑定和移除"></a>关于改变this指向的事件的绑定和移除</h3><p>我们一般会用到addEventListener和removeEventListener，移除匿名函数的绑定是除不掉的，因为添加绑定和移除绑定的匿名函数不是同一个，所以绑定的要是具名函数，这个都比较常用的，有的情况是需要改变this的指向<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListener(<span class="string">'mousemove'</span>, this.moveHandle.bind(this), <span class="literal">false</span>);</span><br><span class="line">document.removeEventListener(<span class="string">'mousemove'</span>, this.moveHandle.bind(this), <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
+<p>以上的moveHandle并没有被移除，这里我还没找着原因，但是有一个解决方案<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.moveEvent = this.moveHandle.bind(this);</span><br><span class="line">document.addEventListener(<span class="string">'mousemove'</span>, this.moveEvent, <span class="literal">false</span>);</span><br><span class="line">document.removeEventListener(<span class="string">'mousemove'</span>, this.moveEvent, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这个移除绑定的方法是有效的，moveEvent函数是唯一的。</p>
+<p>这篇文章我会继续补充，之前没有总结和记笔记的习惯，这个习惯真的好重要。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/cyl/2018/09/17/pic-upload/" data-toggle="tooltip" data-placement="top"
+                           title="上传图片的3种方法以及一些坑">下一篇 &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于event-loop"><span class="toc-text">关于event loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于改变this指向的事件的绑定和移除"><span class="toc-text">关于改变this指向的事件的绑定和移除</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
