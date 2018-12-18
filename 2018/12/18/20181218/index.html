@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        
+        vue.js踩过的坑｜undefined
         
     </title>
 
-    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/archives/2018/">
+    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/2018/12/18/20181218/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/cyl/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,184 +116,115 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="http://118.190.203.145:1995/cyl/avatar.png"/>
-                        <h5><a href="/cyl/about/">yalingc</a></h5>
-                        <p>我可能是脑残剧看多了</p>
+
+<img class="wechat-title-img" src="http://118.190.203.145:1995/cyl/banner/banner.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>vue.js踩过的坑</h1>
+                    
+                    <span class="meta">
+                         作者 yalingc
+                        <span>
+                          日期 2018-12-18
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/12/18/20181218/">
-        <h2 class="post-title">
+    <div class="post-title-haojen">
+        <span>
             vue.js踩过的坑
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-18
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                用了将近2年的vue.js，发现从没对它做过使用总结，所以以后我每遇到一个容易犯错的坑我就记录下来，不然记不住，同样的坑还是会踩。
-关于数组检测不到变化的情况我这里需要渲染多条数据列表，进入当前页面时在beforeRouteEnter / mounted周期去拿数据，要是数据是变化的，需要不断更..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/11/19/20181119/">
-        <h2 class="post-title">
-            关于js容易被忽略的知识点
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-19
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                经常碰到一种情况，自己觉得代码逻辑没有任何问题，但就是会报错，就是达不到自己预想的结果，其实当你知道一些js的代码进程原理，就很容易的解释问题在哪儿了。
-关于event loop咱们用的js是单线程的，分为异步和同步两种情况，同步事件在主线程上按顺序执行，异步事件会被放入任务队列，当主线程任务执..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/09/17/pic-upload/">
-        <h2 class="post-title">
-            上传图片的3种方法以及一些坑
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                这里说一下我遇见的关于本地上传图片，提交图片数据的问题，以下是3种方法，以及我在写代码的过程中遇到的一些坑
-1.原生XMLHttpRequest+formData1234567891011121314151617181920var xhr = new XMLHttpRequest();var f..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  "
-     style="background-image: url('http://118.190.203.145:1995/cyl/banner/banner.jpg')">
-    <a href="/cyl/2018/09/17/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="http://118.190.203.145:1995/cyl/avatar.png"/>
-                    
-                    <h5><a href="/cyl/about/">yalingc</a></h5>
-                    
-                    <p>我可能是脑残剧看多了</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-
-            
-
-        </div>
+        </span>
     </div>
-</div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>用了将近2年的vue.js，发现从没对它做过使用总结，所以以后我每遇到一个容易犯错的坑我就记录下来，不然记不住，同样的坑还是会踩。</p>
+<h3 id="关于数组检测不到变化的情况"><a href="#关于数组检测不到变化的情况" class="headerlink" title="关于数组检测不到变化的情况"></a>关于数组检测不到变化的情况</h3><p>我这里需要渲染多条数据列表，进入当前页面时在beforeRouteEnter / mounted周期去拿数据，要是数据是变化的，需要不断更新，就需要放在beforeRouteEnter发起数据请求，反之，只需要拿一次数据即可的话用mounted。只要进入当前页面了就更新数据数组，数组的长度没有变化，变化的只是内容，这时页面上的列表是没有更新的，那就需要改变数组的长度，在beforeRouteLeave周期或者watch $route对数组置空，问题便得以解决。</p>
+<h3 id="关于控制子组件-v-if"><a href="#关于控制子组件-v-if" class="headerlink" title="关于控制子组件(v-if)"></a>关于控制子组件(v-if)</h3><p>最好不要在父组件上和子组件上都加显示隐藏（v-if）开关，这样很容易出问题，而且一时还发现不了坑在哪儿，影响开发效率。当然特殊情况另当别论。</p>
+<h3 id="关于进入已经渲染过的组件的状态问题"><a href="#关于进入已经渲染过的组件的状态问题" class="headerlink" title="关于进入已经渲染过的组件的状态问题"></a>关于进入已经渲染过的组件的状态问题</h3><p>在页面不刷新的情况下，组件的状态会保持现状，再次进入不会重置，需要在离开路由，或者路由变化的时候重置一下变量。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/cyl/2018/11/19/20181119/" data-toggle="tooltip" data-placement="top"
+                           title="关于js容易被忽略的知识点">下一篇 &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于数组检测不到变化的情况"><span class="toc-text">关于数组检测不到变化的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于控制子组件-v-if"><span class="toc-text">关于控制子组件(v-if)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于进入已经渲染过的组件的状态问题"><span class="toc-text">关于进入已经渲染过的组件的状态问题</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
