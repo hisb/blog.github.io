@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        关于js容易被忽略的知识点｜undefined
+        react项目构建小结｜undefined
         
     </title>
 
-    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/2018/11/19/20181119/">
+    <link rel="canonical" href="https://hisb.github.io/cyl/cyl/2019/05/09/20190509/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/cyl/css/bootstrap.min.css">
@@ -136,12 +136,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>关于js容易被忽略的知识点</h1>
+                    <h1>react项目构建小结</h1>
                     
                     <span class="meta">
                          作者 yalingc
                         <span>
-                          日期 2018-11-19
+                          日期 2019-05-09
                          </span>
                     </span>
                     <div class="tags text-center">
@@ -153,7 +153,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            关于js容易被忽略的知识点
+            react项目构建小结
         </span>
     </div>
 </header>
@@ -164,27 +164,20 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>经常碰到一种情况，自己觉得代码逻辑没有任何问题，但就是会报错，就是达不到自己预想的结果，其实当你知道一些js的代码进程原理，就很容易的解释问题在哪儿了。</p>
-<h3 id="关于event-loop"><a href="#关于event-loop" class="headerlink" title="关于event loop"></a>关于event loop</h3><p>咱们用的js是单线程的，分为异步和同步两种情况，同步事件在主线程上按顺序执行，异步事件会被放入任务队列，当主线程任务执行完成之后，才会按照先进先出的原则去循环执行任务队列中事件对应的回调函数，所以我才知道原来setTimeout定时器可能并不会在指定的时间去执行回调，需要等到主线程任务执行完成之后才会去处理异步的回调。这也是为什么ajax发出的send异步请求和指定的onload，onerror回调函数的位置可以互换。</p>
-<h3 id="关于改变this指向的事件的绑定和移除"><a href="#关于改变this指向的事件的绑定和移除" class="headerlink" title="关于改变this指向的事件的绑定和移除"></a>关于改变this指向的事件的绑定和移除</h3><p>我们一般会用到addEventListener和removeEventListener，移除匿名函数的绑定是除不掉的，因为添加绑定和移除绑定的匿名函数不是同一个，所以绑定的要是具名函数，这个都比较常用的，有的情况是需要改变this的指向<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListener(<span class="string">'mousemove'</span>, this.moveHandle.bind(this), <span class="literal">false</span>);</span><br><span class="line">document.removeEventListener(<span class="string">'mousemove'</span>, this.moveHandle.bind(this), <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
-<p>以上的moveHandle并没有被移除，这里我还没找着原因，但是有一个解决方案<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.moveEvent = this.moveHandle.bind(this);</span><br><span class="line">document.addEventListener(<span class="string">'mousemove'</span>, this.moveEvent, <span class="literal">false</span>);</span><br><span class="line">document.removeEventListener(<span class="string">'mousemove'</span>, this.moveEvent, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
-<p>这个移除绑定的方法是有效的，moveEvent函数是唯一的。</p>
-<p>这篇文章我会继续补充，之前没有总结和记笔记的习惯，这个习惯真的好重要。</p>
+                <p>之前一直用的vue框架，听说用过vue之后，react就特别好上手，刚好公司有个新的小项目，正好练手了。下面是构建过程中的一些总结。<br>插件版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"react"</span>: <span class="string">"^16.7.0"</span>,</span><br><span class="line"><span class="string">"react-dom"</span>: <span class="string">"^16.7.0"</span>,</span><br><span class="line"><span class="string">"react-router-dom"</span>: <span class="string">"^4.3.1"</span></span><br><span class="line"><span class="string">"webpack"</span>: <span class="string">"^4.28.2"</span>,</span><br><span class="line"><span class="string">"webpack-cli"</span>: <span class="string">"^3.1.2"</span>,</span><br><span class="line"><span class="string">"webpack-dev-server"</span>: <span class="string">"^3.1.14"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="关于移动端自适应的问题"><a href="#关于移动端自适应的问题" class="headerlink" title="关于移动端自适应的问题"></a>关于移动端自适应的问题</h3><p>默认的1rem=16px,为了方便计算我们经常给html设置font-size: 62.5%(10px) / 625%(100px)，一下就是根据移动端屏幕的宽度以及比例算出不同分辨率移动端的font-size,保持所有移动端的样式布局统一。<br>下面的360代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是<br>为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.onload = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    getRem(360, 100);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">window.onresize = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    getRem(360, 100);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> getRem(pwidth, prem) &#123;</span><br><span class="line">    <span class="built_in">let</span> html = document.getElementsByTagName(<span class="string">"html"</span>)[0];</span><br><span class="line">    <span class="built_in">let</span> oWidth = document.body.clientWidth || document.documentElement.clientWidth;</span><br><span class="line">    html.style.fontSize = `<span class="variable">$&#123;oWidth / pwidth * prem&#125;</span>px`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="关于路由hash渲染"><a href="#关于路由hash渲染" class="headerlink" title="关于路由hash渲染"></a>关于路由hash渲染</h3><p>react的路由有两种模式browserHistory和hashHistory,一般上线的都是browserHistory，但是这个需要后端做一下处理，本地调试起来不太方便。没仔细研究过webpackdevserver，所以我之前用的都是这种方式解决的,<br>根据process.env.NODE_ENV不同切换这两种模式。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> renderDom = () =&gt; &#123;</span><br><span class="line">	render(</span><br><span class="line">		&lt;HashRouter <span class="built_in">history</span>=&#123;hashHistory&#125;&gt;</span><br><span class="line">			&lt;Route path=<span class="string">"/"</span> component=&#123;IndexPage&#125;&gt;&lt;/Route&gt;</span><br><span class="line">		&lt;/HashRouter&gt;,</span><br><span class="line">		document.getElementById(<span class="string">'app'</span>)</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">if</span>(process.env.NODE_ENV == <span class="string">'production'</span>) &#123;</span><br><span class="line">	renderDom = () =&gt; &#123;</span><br><span class="line">		render(</span><br><span class="line">			&lt;BrowserRouter <span class="built_in">history</span>=&#123;browserHistory&#125;&gt;</span><br><span class="line">				&lt;Route path=<span class="string">"/"</span> component=&#123;IndexPage&#125;&gt;&lt;/Route&gt;</span><br><span class="line">			&lt;/BrowserRouter&gt;,</span><br><span class="line">			document.getElementById(<span class="string">'app'</span>)</span><br><span class="line">		);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后来总觉得这个地儿看起来别扭，想统一一下，不管是什么开发环境都用browserHistory，本地调试刷新路由会报错，毕竟浏览器不承认有这个地址。我就去研究了webpack文档，做一下代理处理，映射到本地html文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">proxy: &#123;</span><br><span class="line">    <span class="string">"/"</span>: &#123;</span><br><span class="line">        bypass: <span class="keyword">function</span>(req, res, proxyOptions) &#123;</span><br><span class="line">            // <span class="keyword">if</span> (req.headers.accept.indexOf(<span class="string">"html"</span>) !== -1) &#123;</span><br><span class="line">                // console.log(<span class="string">"Skipping proxy for browser request."</span>);</span><br><span class="line">                <span class="built_in">return</span> <span class="string">"/index.html"</span>;</span><br><span class="line">            // &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/cyl/2018/12/18/20181218/" data-toggle="tooltip" data-placement="top"
-                           title="vue.js踩过的坑">&larr; 上一篇</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/cyl/2018/09/17/pic-upload/" data-toggle="tooltip" data-placement="top"
-                           title="上传图片的3种方法以及一些坑">下一篇 &rarr;</a>
+                        <a href="/cyl/2018/12/18/20181218/" data-toggle="tooltip" data-placement="top"
+                           title="vue.js踩过的坑">下一篇 &rarr;</a>
                     </li>
                     
                 </ul>
@@ -203,7 +196,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于event-loop"><span class="toc-text">关于event loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于改变this指向的事件的绑定和移除"><span class="toc-text">关于改变this指向的事件的绑定和移除</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于移动端自适应的问题"><span class="toc-text">关于移动端自适应的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于路由hash渲染"><span class="toc-text">关于路由hash渲染</span></a></li></ol>
                 </div>
             </div>
         </div>
